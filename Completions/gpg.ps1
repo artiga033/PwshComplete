@@ -1,6 +1,27 @@
 $scriptBlock = {
     param($wordToComplete, $commandAst, $cursorPosition)
     
+    function Get-KeyCompletions {
+        $o = gpg --list-keys --keyid-format LONG
+    
+        # uids
+        $m = $o | Select-String -Pattern "^uid.*]\s(?<username>.*)\s<(?<email>.*@.*)>"
+        $set = New-Object System.Collections.Generic.HashSet[String] # uids may repeat, we do not want this
+        foreach ($i in $m) {
+            $g = $i.Matches[0].Groups
+            [void]$set.Add( $g["username"].Value)
+            [void]$set.Add( $g["email"].Value)
+        }
+        $set | ForEach-Object {
+            $_
+        }
+        # keyids
+        $m = $o | Select-String -Pattern "^pub.*/(?<keyid>[0-9,A-Z]*) "
+        foreach ($i in $m) {
+            $i.Matches[0].Groups["keyid"].Value
+        }
+    }
+
     $c = $commandAst.ToString()
     $prev = $commandAst.CommandElements[-1].ToString()
     if ($cursorPosition -le $c.Length) {
@@ -27,27 +48,6 @@ $scriptBlock = {
         } | ForEach-Object {
             $_
         }
-    }
-}
-
-function Get-KeyCompletions {
-    $o = gpg --list-keys --keyid-format LONG
-
-    # uids
-    $m = $o | Select-String -Pattern "^uid.*]\s(?<username>.*)\s<(?<email>.*@.*)>"
-    $set = New-Object System.Collections.Generic.HashSet[String] # uids may repeat, we do not want this
-    foreach ($i in $m) {
-        $g = $i.Matches[0].Groups
-        [void]$set.Add( $g["username"].Value)
-        [void]$set.Add( $g["email"].Value)
-    }
-    $set | ForEach-Object {
-        $_
-    }
-    # keyids
-    $m = $o | Select-String -Pattern "^pub.*/(?<keyid>[0-9,A-Z]*) "
-    foreach ($i in $m) {
-        $i.Matches[0].Groups["keyid"].Value
     }
 }
 
