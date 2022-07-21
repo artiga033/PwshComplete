@@ -33,7 +33,7 @@ Copyright = '(c) artiga033. All rights reserved.'
 Description = 'Adds tab completion for many commandline tools.'
 
 # Minimum version of the PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.0'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -98,10 +98,10 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/artiga033/Pwsh-Complete/blob/main/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/artiga033/Pwsh-Complete'
 
         # A URL to an icon representing this module.
         # IconUri = ''

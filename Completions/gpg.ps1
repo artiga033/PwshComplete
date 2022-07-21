@@ -21,7 +21,7 @@ $scriptBlock = {
         }
     }
 
-    if ($wordToComplete -like "-*") {
+    if ($wordToComplete -like "-*" -or $prev -like "gpg*") {
         gpg --dump-options | Where-Object {
             $_ -like "$wordToComplete*"
         } | ForEach-Object {
