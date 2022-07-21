@@ -1,5 +1,5 @@
 function Add-Completions {
-    Get-ChildItem -Path ./Completions -Filter "*.ps1" | ForEach-Object {
-        . $_
+    Get-ChildItem -Path $PSScriptRoot/Completions -Filter "*.ps1" | ForEach-Object {
+        . $_.FullName
     }
 }
