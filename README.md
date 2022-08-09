@@ -28,5 +28,4 @@ Import-Module PwshComplete
 - [x] deno
 - [x] dotnet
 - [x] gpg & gpgv
-- [ ] sqlite3
-- [ ] ssh
+- [x] ssh & scp
