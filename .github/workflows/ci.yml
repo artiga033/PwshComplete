@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches:  
+      - "main"
+    paths: 
+      - "PwshComplete.psd1"
+  
+  workflow_dispatch:
+  
+defaults:
+  run:
+    shell: pwsh
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Publish
+        shell: pwsh
+        run: Publish-Module -Path . -NuGetApiKey $env:API_KEY -WhatIf -Verbose
