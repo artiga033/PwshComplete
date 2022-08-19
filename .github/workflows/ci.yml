@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches:  
+      - "main"
+    paths: 
+      - "PwshComplete.psd1"
+
+defaults:
+  run:
+    shell: pwsh
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Publish
+        shell: pwsh
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: Publish-Module -Path . -NuGetApiKey $env:API_KEY -Verbose
