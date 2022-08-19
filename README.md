@@ -29,3 +29,4 @@ Import-Module PwshComplete
 - [x] dotnet
 - [x] gpg & gpgv
 - [x] ssh & scp
+- [x] winget
