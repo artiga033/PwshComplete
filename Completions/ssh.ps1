@@ -53,7 +53,15 @@ $sshScriptBlock = {
     else {
         $c = Get-SshConfigHosts
         $k = Get-SshKnownHosts
-        $c + $k | Where-Object { $_ -like "$wordToComplete*" }
+
+        $all = $c + $k
+
+        $atIndex = $wordToComplete.IndexOf('@')
+        if ($atIndex -ne -1) {
+            $prefix = $wordToComplete.SubString(0, $atIndex + 1)
+            $all = $all | ForEach-Object { "$prefix$_" }
+        } 
+        $all | Where-Object { $_ -like "$($wordToComplete)*" }
     }
 }
 
