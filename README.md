@@ -28,5 +28,6 @@ Import-Module PwshComplete
 - [x] deno
 - [x] dotnet
 - [x] gpg & gpgv
+- [x] scoop
 - [x] ssh & scp
 - [x] winget
