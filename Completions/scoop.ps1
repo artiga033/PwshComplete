@@ -371,7 +371,7 @@ $scriptBlock = {
     # e.g `scoop install ` would be considered as `scoop install`
     # This behavior causes problem with the origianl function above.
     # So if wordToComplete is empty string, we append a space char at the end.
-    if ($wordToComplete -eq "") {
+    if ($rest -ne "" -and $wordToComplete -eq "") {
         $rest += " "
     }
     ScoopTabExpansion $rest
