@@ -31,3 +31,6 @@ Import-Module PwshComplete
 - [x] scoop
 - [x] ssh & scp
 - [x] winget
+
+## Credits
+[Moeologist/scoop-completion](https://github.com/Moeologist/scoop-completion) (MIT License)
